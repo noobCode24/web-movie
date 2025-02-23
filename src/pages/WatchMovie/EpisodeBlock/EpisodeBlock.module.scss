@@ -1,0 +1,16 @@
+.episode__block {
+  padding: 18px 24px;
+  background-color: #fff;
+  width: fit-content;
+  color: #000;
+  height: fit-content;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-align: center;
+
+  &.active {
+    font-weight: 600;
+    border: 2px solid red;
+  }
+}

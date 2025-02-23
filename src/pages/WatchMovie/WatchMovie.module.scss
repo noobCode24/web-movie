@@ -1,0 +1,21 @@
+.video__wrapper {
+  padding-top: 70px;
+  display: flex;
+  margin-inline: 32px;
+  gap: 32px;
+
+  .video_player {
+    flex: 1;
+  }
+
+  .episodes_list {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 10px;
+    max-width: 30%;
+    height: fit-content;
+    background-color: rgba(255,255,255,.1);
+    padding: 18px;
+  }
+}
