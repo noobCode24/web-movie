@@ -14,9 +14,10 @@ function App() {
   const fetchData = async () => {
     try {
       const [trendingResponse, configResponse] = await Promise.all([
-        axios.get('/trending/all/week'),
-        axios.get('/configuration'),
+        axios.get('https://api.themoviedb.org/3/trending/all/week'),
+        axios.get('https://api.themoviedb.org/3/configuration'),
       ]);
+      console.log('🚀 ~ fetchData ~ trendingResponse:', trendingResponse)
       dispatch(setBannerData(trendingResponse.data.results));
       dispatch(setImageURL(configResponse.data.images.secure_base_url + 'original'));
     } catch (error) {

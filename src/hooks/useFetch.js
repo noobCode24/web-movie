@@ -1,26 +1,29 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { cleanUrl } from "../helpers/CleanUrl"
 
-const useFetch = (endpoint)=>{
-    const [data,setData] = useState([])
-    const [loading,setLoading] = useState(false)
-
-    const fetchData = async()=>{
+const useFetch = (host, endpoint, { page, sort_field, sort_type, sort_lang, category, country, year, limit } = {}) => {
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+    const api = host + endpoint + `?page=${page}&sort_field=${sort_field}&sort_type=${sort_type}&sort_lang=${sort_lang}&category=${category}&country=${country}&year=${year}&limit=${limit}`
+    const fetchData = async () => {
         try {
             setLoading(true)
-            const response = await axios.get(endpoint)
+            const response = (await axios.get(cleanUrl(api))).data
             setLoading(false)
-            setData(response.data.results)
+            if (response?.items) setData(response.items)
+            else if (response?.data?.items) setData(response.data?.items)
+            else setData(response)
         } catch (error) {
-            console.log('error',error)
-       }
+            console.log('error', error)
+        }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchData()
-    },[endpoint])
+    }, [endpoint])
 
-    return { data , loading}
+    return { data, loading }
 }
 
 export default useFetch

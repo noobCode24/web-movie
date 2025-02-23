@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 
 const BannerHome = () => {
   const bannerData = useSelector(state => state.movieoData.bannerData)
+  console.log('🚀 ~ BannerHome ~ bannerData:', bannerData)
   const imageURL = useSelector(state => state.movieoData.imageURL)
   const [currentImage,setCurrentImage] = useState(0)
 
@@ -58,7 +59,7 @@ const BannerHome = () => {
                 <div className='absolute top-0 w-full h-full bg-gradient-to-t from-neutral-900 to-transparent'>
                 </div>
 
-                <div className='container mx-auto'>
+                <div className='container ml-9'>
                   <div className=' w-full absolute bottom-0 max-w-md px-3'>
                     <h2 className='font-bold text-2xl lg:text-4xl text-white drop-shadow-2xl '>{data?.title || data?.name}</h2>
                     <p className='text-ellipsis line-clamp-3 my-2'>{data.overview}</p>
